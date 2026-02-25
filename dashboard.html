@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NexRoute Pro | Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="dashboard-body">
+    <div class="dash-layout">
+      <aside class="sidebar">
+        <div class="brand">NexRoute <span>Pro</span></div>
+        <button class="side-link active" data-target="overview">نظرة عامة</button>
+        <button class="side-link" data-target="orders">الطلبات</button>
+        <button class="side-link" data-target="shipments">الشحنات</button>
+        <button class="side-link" data-target="comparison">مقارنة الشحن</button>
+        <button class="side-link" data-target="cod">الدفع عند الاستلام</button>
+        <button class="side-link" data-target="settings">الإعدادات</button>
+        <div class="quick-box">
+          <h4>إحصائيات سريعة</h4>
+          <p><b>24</b> الطلبات اليوم</p>
+          <p><b>156</b> الشحنات النشطة</p>
+          <p><b>8</b> قيد الانتظار</p>
+        </div>
+      </aside>
+
+      <main class="dash-content">
+        <section class="panel active" id="overview">
+          <h1>لوحة التحكم</h1>
+          <p>مرحباً بك في NexRoute Pro</p>
+          <div class="kpi-grid">
+            <div class="kpi"><h3>إجمالي الطلبات</h3><strong>1,234</strong></div>
+            <div class="kpi"><h3>الشحنات النشطة</h3><strong>156</strong></div>
+            <div class="kpi"><h3>قيد الانتظار</h3><strong>8</strong></div>
+            <div class="kpi"><h3>إجمالي COD</h3><strong>45,890 ر.س</strong></div>
+          </div>
+          <div class="card table-wrap">
+            <h3>الطلبات الأخيرة</h3>
+            <table>
+              <thead><tr><th>رقم الطلب</th><th>العميل</th><th>المبلغ</th><th>الحالة</th></tr></thead>
+              <tbody>
+                <tr><td>#12345</td><td>أحمد محمد</td><td>250 ر.س</td><td><span class="chip blue">قيد الشحن</span></td></tr>
+                <tr><td>#12344</td><td>فاطمة علي</td><td>180 ر.س</td><td><span class="chip green">تم التسليم</span></td></tr>
+                <tr><td>#12343</td><td>خالد سعيد</td><td>320 ر.س</td><td><span class="chip yellow">قيد المعالجة</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="panel" id="orders">
+          <h1>إدارة الطلبات</h1>
+          <div class="toolbar"><input placeholder="البحث برقم الطلب، اسم العميل..." /></div>
+          <div class="card table-wrap">
+            <table>
+              <thead><tr><th>رقم الطلب</th><th>المنصة</th><th>العميل</th><th>المدينة</th><th>المبلغ</th><th>COD</th><th>الحالة</th></tr></thead>
+              <tbody id="ordersBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="panel" id="shipments">
+          <h1>إدارة الشحنات</h1>
+          <div class="card table-wrap">
+            <table>
+              <thead><tr><th>رقم التتبع</th><th>رقم الطلب</th><th>الشركة</th><th>العميل</th><th>الوجهة</th><th>الحالة</th></tr></thead>
+              <tbody>
+                <tr><td>ARX123456789SA</td><td>SALLA-12345</td><td>Aramex</td><td>أحمد محمد</td><td>الرياض</td><td><span class="chip yellow">في الطريق</span></td></tr>
+                <tr><td>SMSA987654321SA</td><td>ZID-67890</td><td>SMSA</td><td>فاطمة سعيد</td><td>جدة</td><td><span class="chip green">تم التسليم</span></td></tr>
+                <tr><td>DHL456789123SA</td><td>SHOPIFY-54321</td><td>DHL</td><td>خالد عبدالله</td><td>الدمام</td><td><span class="chip violet">خارج للتوصيل</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="panel" id="comparison">
+          <h1>مقارنة أسعار الشحن</h1>
+          <div class="card comparison">
+            <label>وزن الشحنة (كغ) <input id="weight" type="number" min="1" value="2" /></label>
+            <label>الوجهة <input id="destination" value="الرياض" /></label>
+            <button class="btn btn-primary" id="compareBtn">قارن الآن</button>
+            <div id="quoteResults"></div>
+          </div>
+        </section>
+
+        <section class="panel" id="cod">
+          <h1>الدفع عند الاستلام (COD)</h1>
+          <div class="kpi-grid">
+            <div class="kpi"><h3>إجمالي COD</h3><strong>4,350 ر.س</strong></div>
+            <div class="kpi"><h3>تم التحصيل</h3><strong>2,645 ر.س</strong></div>
+            <div class="kpi"><h3>قيد الانتظار</h3><strong>815 ر.س</strong></div>
+            <div class="kpi"><h3>تم التسوية</h3><strong>1,910 ر.س</strong></div>
+          </div>
+          <div class="card table-wrap">
+            <table>
+              <thead><tr><th>رقم التتبع</th><th>الشركة</th><th>مبلغ COD</th><th>المحصل</th><th>التسوية</th><th>الحالة</th></tr></thead>
+              <tbody>
+                <tr><td>ARX-789456123</td><td>Aramex</td><td>450 ر.س</td><td>450 ر.س</td><td>432 ر.س</td><td><span class="chip green">تمت التسوية</span></td></tr>
+                <tr><td>SMSA-456123789</td><td>SMSA</td><td>280 ر.س</td><td>280 ر.س</td><td>—</td><td><span class="chip blue">تم التحصيل</span></td></tr>
+                <tr><td>DHL-321654987</td><td>DHL</td><td>620 ر.س</td><td>—</td><td>—</td><td><span class="chip gray">في الانتظار</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="panel" id="settings">
+          <h1>الإعدادات والتكاملات</h1>
+          <div class="settings-grid">
+            <div class="card"><h3>منصات التجارة الإلكترونية</h3><p>سلة ✅، زد ✅، Shopify ⏳، WooCommerce ⏳</p></div>
+            <div class="card"><h3>شركات الشحن</h3><p>Aramex ✅، SMSA ✅، DHL ⏳، J&amp;T ⏳</p></div>
+            <div class="card"><h3>إعدادات الإشعارات</h3><p>SMS ✅، WhatsApp ✅، البريد الإلكتروني ✅</p></div>
+            <div class="card"><h3>قوالب بوليصة الشحن</h3><p>A4 - عمودي - العربية</p></div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
